@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    {% for (hour, code, temp) in zip(data["hourly"]["time"], data["hourly"]["weathercode"], data["hourly"]["temperature_2m"]) %}
+    <p> {{ hour }} {{ code }} {{ temp }} </p>
+    {% endfor %}
+  </body>
+</html>

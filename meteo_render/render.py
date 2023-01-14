@@ -21,6 +21,7 @@ def render_weather(location, template):
     env = jinja2.Environment(
         loader=jinja2.PackageLoader("meteo_render")
     )
+    env.globals.update(zip=zip)
     template = env.get_template(os.path.join(template, "page.html.j2"))
 
     return template.render(data=data, extra=extra)
