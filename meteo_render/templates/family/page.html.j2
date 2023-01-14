@@ -13,10 +13,10 @@
             <td class="weather-hour{% if hour["time"] == extra["hour"] %} weather-this-hour{% endif %}">
                 <p>
                     <span class="logo">
-                        <img src="{{ extra["images"][hour["weathercode"]] }}"/>
+                        <img class="weather-logo" src="img/{{ extra["images"][hour["weathercode"]] }}"/>
                     </span>
                 </p>
-                <p>
+                <p class="weather-desc">
                     {{ extra["names"][hour["weathercode"]] }}
                 </p>
                 <p>
