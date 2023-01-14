@@ -1,5 +1,16 @@
+table {
+    border-spacing: 0 20px;
+}
+
 td.weather-hour {
-    border: 1px solid;
+    border: 3px solid;
+    border-color: white;
+    text-align: center;
+}
+
+td.weather-hour p {
+    margin: 1px;
+    text-align: center;
 }
 
 td.weather-this-hour {
@@ -18,4 +29,31 @@ img.weather-logo {
 
 p.weather-desc {
     font-size: xx-small;
+    line-height: 1.25em;
+    min-height: 3.75em;
+}
+
+span.temp {
+    font-size: x-large;
+    font-family: sans;
+}
+
+p.hour-time {
+    font-family: sans;
+}
+
+span.temp-freezing {
+    color: royalblue;
+}
+
+span.temp-cold {
+    color: blue;
+}
+
+span.temp-mild {
+    color: gold;
+}
+
+span.temp-hot {
+    color: orangered;
 }

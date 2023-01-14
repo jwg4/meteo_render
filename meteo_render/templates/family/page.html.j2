@@ -23,7 +23,19 @@
                     {{ extra["names"][hour["weathercode"]] }}
                 </p>
                 <p>
-                    {{ hour["temperature_2m"] | int }}
+                    {% if hour["temperature_2m"] < 0.1 %}
+                    <span class="temp temp-freezing">
+                    {% elif hour["temperature_2m"] < 10.1 %}
+                    <span class="temp temp-cold">
+                    {% elif hour["temperature_2m"] < 20.1 %}
+                    <span class="temp temp-mild">
+                    {% else %}
+                    <span class="temp temp-hot">
+                    {% endif %} 
+                        {{ hour["temperature_2m"] | int }}
+                    </span>
+                </p>
+                <p class="hour-time">
                     {{ hour["time"][-5:] }}
                 </p>
             <td>
