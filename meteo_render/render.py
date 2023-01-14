@@ -1,11 +1,30 @@
 import datetime
 import os
 
+from collections import defaultdict
+
 import jinja2
 import requests
 
+from .config import WEATHER_CODE_NAMES
+
 ISO_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
 URL_PATTERN = "https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&hourly=temperature_2m,apparent_temperature,precipitation,weathercode"
+
+
+def get_images(template):
+    path = os.path.join("template", "images")
+    try:
+        images = os.listdir(path)
+    except:
+        images = []
+    actual_images = {
+        int(image.split(".")[0]): image
+        for image in images
+    }
+    d = defaultdict(lambda: "XXX.png")
+    d.update(actual_images)
+    return d
 
 
 def format_data(raw_data):
@@ -45,6 +64,8 @@ def render_weather(location, template):
     extra = {
         "timestamp": now.strftime(ISO_LOCAL_FORMAT),
         "hour": this_hour.strftime(ISO_LOCAL_FORMAT),
+        "names": WEATHER_CODE_NAMES,
+        "images": get_images(template),
     }
 
     env = jinja2.Environment(loader=jinja2.PackageLoader("meteo_render"))
