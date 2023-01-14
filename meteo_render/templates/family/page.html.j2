@@ -9,6 +9,9 @@
     <table>
         {% for day in data %}
         <tr>
+            <td class="day-name">
+                {{ extra["day_names"][day["date"]] if day["date"] in extra["day_names"] else day["date"] }}
+            <td>
             {% for hour in day["hours"] %}
             <td class="weather-hour{% if hour["time"] == extra["hour"] %} weather-this-hour{% endif %}">
                 <p>
