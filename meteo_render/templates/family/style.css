@@ -1,0 +1,8 @@
+td.weather-hour {
+    border: 1px solid;
+}
+
+td.weather-this-hour {
+    border-color: red;
+}
+    

@@ -6,8 +6,16 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    {% for (hour, code, temp) in zip(data["hourly"]["time"], data["hourly"]["weathercode"], data["hourly"]["temperature_2m"]) %}
-    <p> {{ hour }} {{ code }} {{ temp }} </p>
-    {% endfor %}
+    <table>
+        {% for day in data %}
+        <tr>
+            {% for hour in day["hours"] %}
+            <td class="weather-hour{% if hour["time"] == extra["hour"] %} weather-this-hour{% endif %}">
+                {{ hour["temperature_2m"] }}
+            <td>
+            {% endfor %}
+        <tr>
+        {% endfor %}
+    </table> 
   </body>
 </html>

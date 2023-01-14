@@ -4,6 +4,7 @@ import os
 import jinja2
 import requests
 
+ISO_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
 URL_PATTERN = "https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&hourly=temperature_2m,apparent_temperature,precipitation,weathercode"
 
 
@@ -40,8 +41,10 @@ def render_weather(location, template):
     data = format_data(raw_data)
 
     now = datetime.datetime.now()
+    this_hour = datetime.datetime(now.year, now.month, now.day, now.hour)
     extra = {
-        "timestamp": now,
+        "timestamp": now.strftime(ISO_LOCAL_FORMAT),
+        "hour": this_hour.strftime(ISO_LOCAL_FORMAT),
     }
 
     env = jinja2.Environment(loader=jinja2.PackageLoader("meteo_render"))
