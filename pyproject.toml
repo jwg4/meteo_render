@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "meteo_render"
-version = "0.1.0"
+version = "0.1.1"
 description = "Retrieve open-meteo.com data and render it into HTML pages"
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
 license = "MIT"
+include = ["templates/**"]
 
 [tool.poetry.dependencies]
 python = "^3.7"

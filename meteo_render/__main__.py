@@ -55,7 +55,11 @@ def get_args():
         type=existing_or_new_file
     )
 
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.render_weather:
+        assert args.location is not None, "You must provide a location to render weather data"
+
+    return args
 
 
 def get_template_folder(template_name):
@@ -84,14 +88,21 @@ if __name__ == '__main__':
             dest = os.path.join(args.deploy_static, file)
             logging.debug("Copying %s to %s" % (src, dest))
             shutil.copy(src, dest)
+
         img_folder = os.path.join(src_folder, "img")
+        img_dest = os.path.join(args.deploy_static, "img")
+        if not os.path.exists(img_dest):
+            os.mkdir(img_dest)
+        else:
+            assert os.path.isdir(img_dest)
+
         for file in os.listdir(img_folder):
             src = os.path.join(img_folder, file)
-            dest = os.path.join(args.deploy_static, "img", file)
+            dest = os.path.join(img_dest, file)
             logging.debug("Copying %s to %s" % (src, dest))
             shutil.copy(src, dest)
     else:
-        image_folder = args.images or os.path.dirname(args.render_weather)
+        image_folder = args.images or os.path.join(os.path.dirname(args.render_weather), "img")
         logging.debug("Using %s as the images folder" % (image_folder, ))
         page = render_weather(args.location, args.template, image_folder)
         logging.debug("Rendering the weather at %s to %s" % (args.location, args.render_weather))
