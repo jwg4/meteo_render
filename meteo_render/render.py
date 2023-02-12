@@ -22,6 +22,7 @@ def get_images(folder):
         int(image.split(".")[0]): image
         for image in images
         if image.endswith("png")
+        and image[0].isdigit()
     }
     d = defaultdict(lambda: "XXX.png")
     d.update(actual_images)
