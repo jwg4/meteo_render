@@ -22,7 +22,8 @@ def existing_folder(s):
 def existing_or_new_file(s):
     if not os.path.exists(s):
         folder = os.path.dirname(s)
-        assert os.path.isdir(folder)
+        if folder:
+            assert os.path.isdir(folder)
     return s
 
 
