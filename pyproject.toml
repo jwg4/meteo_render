@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "meteo_render"
-version = "0.4.0"
+version = "0.4.1"
 description = "Retrieve open-meteo.com data and render it into HTML pages"
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
 license = "MIT"
