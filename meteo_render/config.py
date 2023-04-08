@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+import pytz
+
 
 WEATHER_CODE_NAMES = defaultdict(lambda: "???")
 
@@ -35,3 +37,6 @@ WEATHER_CODE_NAMES.update(
         99: "THUNDER WITH HAIL",
     }
 )
+
+TIMEZONE = pytz.timezone("Europe/London")
+

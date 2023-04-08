@@ -6,7 +6,7 @@ from collections import defaultdict
 import jinja2
 import requests
 
-from .config import WEATHER_CODE_NAMES
+from .config import WEATHER_CODE_NAMES, TIMEZONE
 
 ISO_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
 ISO_DATE_FORMAT = "%Y-%m-%d"
@@ -70,7 +70,7 @@ def render_weather(location, template, image_folder):
     raw_data = result.json()
     data = format_data(raw_data)
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(tz=TIMEZONE)
     this_hour = datetime.datetime(now.year, now.month, now.day, now.hour)
     extra = {
         "timestamp": now.strftime(ISO_LOCAL_FORMAT),
